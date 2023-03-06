@@ -6,10 +6,15 @@
 /*   By: riael <Don't quit! | #42gether>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:44:49 by riael             #+#    #+#             */
-/*   Updated: 2023/03/05 13:52:25 by riael            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:23:31 by kush             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_ls.h"
+
+int	ft_check_flag(char *str)
+{
+	return (0);
+}
 
 void	ft_proc_args(int argc, char **argv)
 {

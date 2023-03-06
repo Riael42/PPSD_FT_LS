@@ -6,12 +6,30 @@
 /*   By: riael <Don't quit! | #42gether>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:30:49 by riael             #+#    #+#             */
-/*   Updated: 2023/03/06 09:30:50 by riael            ###   ########.fr       */
+/*   Updated: 2023/03/06 09:43:50 by riael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_ls.h"
 
-void  ft_proc_flags()
+void  ft_get_flags(char *flags, int max, char **argv)
 {
-  
+        int     argc;
+        int     argparser;
+        int     flag;
+        
+        argc = 1;
+        while (argc < max)
+        {
+                argparser = 1;
+                if (argv[argc][0] == '-')
+                        while (argv[argc][argparser] != '\0')
+                        {
+                                flag = argv[argc][argparser];
+                                flag = flag - ('a' * (flag >= 'a' && flag <= 'z'));
+                                flag = flag - ('A' * (flag >= 'A' && flag <= 'Z'));
+                                flags[flag] = 1;
+                                argparser += 1;
+                        }
+                argc += 1;
+        }
 }

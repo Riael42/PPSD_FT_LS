@@ -6,14 +6,14 @@
 /*   By: riael <Don't quit! | #42gether>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:44:49 by riael             #+#    #+#             */
-/*   Updated: 2023/03/05 13:52:25 by riael            ###   ########.fr       */
+/*   Updated: 2023/03/06 18:02:49 by riael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_ls.h"
 
 void	ft_proc_args(int argc, char **argv)
 {
-	char	flags[52]; //hard cap at 26 * 2 flags
+	char	flags[53]; //hard cap at 26 * 2 flags
 	char	names[100][100]; //hard cap at 100 files with 100 max name length
 	int	bitshift;
 	//u_bitshift *bitshift;
@@ -26,5 +26,5 @@ void	ft_proc_args(int argc, char **argv)
 		return ;
 	bitshift = ft_get_bitshift(flags);
 	//ft_get_bitshift(flags)
-	ft_start_ls(bitshift, names)
+	ft_start_ls(bitshift, names);
 }

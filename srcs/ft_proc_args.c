@@ -13,17 +13,24 @@
 
 void	ft_proc_args(int argc, char **argv)
 {
-	int	num;
+	char	flags[100]; //hard cap at 100 flags
+	char	names[100][100]; //hard cap at 100 files with 100 max name length
+	int	bitshift;
+	//u_bitshift *bitshift;
 
-	num = 1;
-	while (num < argc)
+	ft_get_flags(flags, argc, argv);
+	ft_get_names(names, argc, argv);
+	if (ft_check_flags(flags) == 0)
 	{
-		if (argv[num][0] == '-') //if argv[num][1] == '-' check advanced flags for errors
-			if (ft_check_flag(argv[num]) == 0)
-			{
-				write(1, "Error not a valid flag", 21);
-				return ;
-			}
-		num += 1;
+		write(1, "Invalid flag error, replace this with specific flag error", 20);
+		return ;
 	}
+	if (ft_check_names(names) == 0)
+	{
+		write(1, "Invalid name error, replace this with specific flag error", 20);
+		return ;
+	}
+	bitshift = ft_get_bitshift(flags);
+	//ft_get_bitshift(flags)
+	ft_start_ls(bitshift, names)
 }

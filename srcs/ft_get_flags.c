@@ -24,10 +24,7 @@ void  ft_get_flags(char *flags, int max, char **argv)
                 if (argv[argc][0] == '-')
                         while (argv[argc][argparser] != '\0')
                         {
-                                flag = argv[argc][argparser];
-                                flag = flag - ('a' * (flag >= 'a' && flag <= 'z'));
-                                flag = flag - ('A' * (flag >= 'A' && flag <= 'Z'));
-                                flags[flag] = 1;
+                                flags[argv[argc][argparser] - 'A'] = 1;
                                 argparser += 1;
                         }
                 argc += 1;

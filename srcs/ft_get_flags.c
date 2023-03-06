@@ -11,22 +11,31 @@
 /* ************************************************************************** */
 #include "../includes/ft_ls.h"
 
-void  ft_get_flags(char *flags, int max, char **argv)
+void  ft_get_flags(char *flags, int argc, char **argv)
 {
-        int     argc;
         int     argparser;
         int     flag;
         
-        argc = 1;
-        while (argc < max)
+        while (argc > 1)
         {
                 argparser = 1;
                 if (argv[argc][0] == '-')
                         while (argv[argc][argparser] != '\0')
                         {
-                                flags[argv[argc][argparser] - 'A'] = 1;
+                                flag = argv[argc][argpaser] - 'A';
+                                if (flag < 0 || flag > 52)
+                                {
+                                        flag += 'A';
+                                        write(1, "Error, flag -", 12);
+                                        write(1, &flag, 1);
+                                        write(1, "is an invalid flag!\n", 20);
+                                        flags[0] = -1;
+                                        return ;
+                                }
+                                flags[flag] = 1;
                                 argparser += 1;
                         }
-                argc += 1;
+                argv[argc][0] = '\0';
+                argc -= 1;
         }
 }

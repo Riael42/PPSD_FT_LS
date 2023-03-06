@@ -13,7 +13,7 @@
 
 void	ft_proc_args(int argc, char **argv)
 {
-	char	flags[100]; //hard cap at 100 flags
+	char	flags[52]; //hard cap at 26 * 2 flags
 	char	names[100][100]; //hard cap at 100 files with 100 max name length
 	int	bitshift;
 	//u_bitshift *bitshift;

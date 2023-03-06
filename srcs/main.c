@@ -13,7 +13,6 @@
 
 int	main(int argc, char **argv)
 {
-	argv[0][0] += 1;
 	if (argc == 1)
 		write(1, "Running default LS config\n", 26);
 	else

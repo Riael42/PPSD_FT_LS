@@ -20,16 +20,10 @@ void	ft_proc_args(int argc, char **argv)
 
 	ft_get_flags(flags, argc, argv);
 	ft_get_names(names, argc, argv);
-	if (ft_check_flags(flags) == 0)
-	{
-		write(1, "Invalid flag error, replace this with specific flag error", 20);
+	if (flags[0] == '-1')
 		return ;
-	}
-	if (ft_check_names(names) == 0)
-	{
-		write(1, "Invalid name error, replace this with specific flag error", 20);
+	if (names[0][0] == '/')
 		return ;
-	}
 	bitshift = ft_get_bitshift(flags);
 	//ft_get_bitshift(flags)
 	ft_start_ls(bitshift, names)

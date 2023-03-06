@@ -12,6 +12,8 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include <unistd.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <stdio.h>
 
 #endif

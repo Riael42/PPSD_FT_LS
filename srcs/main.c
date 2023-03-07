@@ -6,13 +6,13 @@
 /*   By: riael <Don't quit! | #42gether>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 12:23:23 by riael             #+#    #+#             */
-/*   Updated: 2023/03/06 16:37:01 by kush             ###   ########.fr       */
+/*   Updated: 2023/03/07 04:47:07 by kush             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_ls.h"
 
 void	ft_proc_args(int argc, char **argv);
-int	run_default(void);
+int	run_default(char *path);
 
 int	main(int argc, char **argv)
 {
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 	{
 		write(1, "Running default LS config\n", 26);
-		run_default();
+		run_default(".");
 	}
 	else
 		ft_proc_args(argc, argv);

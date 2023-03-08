@@ -16,4 +16,8 @@
 #include <sys/stat.h>
 #include <stdio.h>
 
+int	ft_strlen(char* str);
+char*	ft_strcat_c(char* dest, char c);
+void*	ft_col_permissions(char* result, char* filename);
+
 #endif

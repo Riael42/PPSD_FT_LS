@@ -1,4 +1,4 @@
-int ft_strlen(char* str);
+#include "FT_LS.h"
 
 char*   ft_strcat_c(char* dest, char c)
 {

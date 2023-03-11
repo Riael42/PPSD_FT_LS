@@ -6,11 +6,11 @@
 /*   By: mcutura <mcutura@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:14:19 by mcutura           #+#    #+#             */
-/*   Updated: 2023/03/11 12:23:51 by mcutura          ###   ########.fr       */
+/*   Updated: 2023/03/11 13:46:19 by mcutura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO - Add check for invalid flags; add --word flags
+// TODO - add --word flags
 // bits : 0, 1, 2 - reserved bits
 // 3 - R - list recursively
 // 4-6 - x(000), m(010), 1(001), unasigned(110)?, l(111), g(101), o(110)
@@ -21,7 +21,7 @@
 // 15 - n - show ID numbers for groups and users
 // 16 - G - hide group info on long listing
 // 17 - d - directory ???
-// 18-32 - free to assign for sorting and other options
+// 18-32 - free to assign for extra options or other utility
 
 #include "ft_bitmagiks.h"
 
@@ -104,7 +104,7 @@ void	set_sorting_option(int *bits, char c)
 	}
 }
 
-int	ft_flags_to_bits(int *bitflags, unsigned char *flags)
+int	ft_flags_to_bits(int *bitflags, char *flags)
 {
 	if (flags)
 	{
@@ -116,6 +116,8 @@ int	ft_flags_to_bits(int *bitflags, unsigned char *flags)
 				set_sorting_option(bitflags, *flags);
 			else if (is_other_option(*flags))
 				set_other_option(bitflags, *flags);
+			else
+				return ((int) *flags);
 			flags++;
 		}
 	}
@@ -126,13 +128,21 @@ int	ft_get_bits(int ac, char **av)
 {
 	int	bits;
 	int	i;
+	int	err;
 
 	if (ac == 1)
 		return (0);
 	i = 0;
 	bits = 0;
 	while (++i < ac)
-		if (ft_strlen(av[i] > 1 && av[i][0] == '-' && av[i][1] != '-'))
-				ft_flags_to_bits(bits, av[i]);
+		if (ft_strlen(av[i]) > 1 && av[i][0] == '-' && av[i][1] != '-')
+		{
+			err = ft_flags_to_bits(&bits, &av[i][1]);
+			if (err)
+			{
+				ft_puterr(av[0], "invalid option -- ", (char) err);
+				return (-1);
+			}
+		}
 	return (bits);
 }

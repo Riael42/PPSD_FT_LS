@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bitmagiks.h                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcutura <mcutura@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 12:04:31 by mcutura           #+#    #+#             */
-/*   Updated: 2023/03/11 12:08:00 by mcutura          ###   ########.fr       */
+/*   Created: 2023/03/11 13:40:30 by mcutura           #+#    #+#             */
+/*   Updated: 2023/03/11 13:41:06 by mcutura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_BITMAGIKS_H
-# define FT_BITMAGIKS_H
+int	ft_strlen(char *str)
+{
+	int	len;
 
-# define LIST_MASK 111
-# define LIST_OFFSET 4
-# define SORT_MASK 1111
-# define SORT_OFFSET 7
-# define ALL_MASK 11
-# define ALL_OFFSET 11
-
-int	is_sorting_option(char c);
-int	is_listing_option(char c);
-int	is_other_option(char c);
-int	ft_strlen(char *str);
-void	ft_puterr(char *progname, char *errmsg, char errparam);
-
-#endif
+	len = 0;
+	if (str)
+		while (*str++)
+			len++;
+	return (len);
+}

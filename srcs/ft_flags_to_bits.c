@@ -6,7 +6,7 @@
 /*   By: mcutura <mcutura@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:14:19 by mcutura           #+#    #+#             */
-/*   Updated: 2023/03/11 13:46:19 by mcutura          ###   ########.fr       */
+/*   Updated: 2023/03/11 15:42:09 by mcutura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 // bits : 0, 1, 2 - reserved bits
 // 3 - R - list recursively
 // 4-6 - x(000), m(010), 1(001), unasigned(110)?, l(111), g(101), o(110)
-// 7-10 - various sorting options (5 combinations still unassigned)
+// 7-10 - various sorting options (6 combinations still unassigned)
 // 11-12 - a&A - list all a(11), ignore . and .. A(01)
 // 13 - i - also list inode number
 // 14 - h - show sizes in human friendly form
 // 15 - n - show ID numbers for groups and users
 // 16 - G - hide group info on long listing
 // 17 - d - directory ???
-// 18-32 - free to assign for extra options or other utility
+// 18 - r - reverse sorting
+// 19-32 - free to assign for extra options or other utility
 
 #include "ft_bitmagiks.h"
 
@@ -77,9 +78,11 @@ void	set_listing_option(int *bits, char c)
 
 void	set_sorting_option(int *bits, char c)
 {
-	*bits &= ~(SORT_MASK << SORT_OFFSET);
-	if (is_sorting_option(c) > 0)
+	if (c == 'r')
+		*bits |= 1 << 18;
+	else
 	{
+		*bits &= ~(SORT_MASK << SORT_OFFSET);
 		if (c == 'c')
 			*bits |= (0001 << SORT_OFFSET);
 		else if (c == 't')
@@ -88,10 +91,7 @@ void	set_sorting_option(int *bits, char c)
 			*bits |= (0011 << SORT_OFFSET);
 		else if (c == 'u')
 			*bits |= (0100 << SORT_OFFSET);
-	}
-	else
-	{
-		if (c == 'v')
+		else if (c == 'v')
 			*bits |= (1001 << SORT_OFFSET);
 		else if (c == 'S')
 			*bits |= (1010 << SORT_OFFSET);
@@ -99,8 +99,6 @@ void	set_sorting_option(int *bits, char c)
 			*bits |= (1011 << SORT_OFFSET);
 		else if (c == 'X')
 			*bits |= (1100 << SORT_OFFSET);
-		else if (c == 'r')
-			*bits |= (1111 << SORT_OFFSET);
 	}
 }
 
@@ -135,6 +133,7 @@ int	ft_get_bits(int ac, char **av)
 	i = 0;
 	bits = 0;
 	while (++i < ac)
+	{
 		if (ft_strlen(av[i]) > 1 && av[i][0] == '-' && av[i][1] != '-')
 		{
 			err = ft_flags_to_bits(&bits, &av[i][1]);
@@ -144,5 +143,6 @@ int	ft_get_bits(int ac, char **av)
 				return (-1);
 			}
 		}
+	}
 	return (bits);
 }

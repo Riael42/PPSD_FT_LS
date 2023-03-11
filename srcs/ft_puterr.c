@@ -6,7 +6,7 @@
 /*   By: mcutura <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:41:32 by mcutura           #+#    #+#             */
-/*   Updated: 2023/03/11 13:42:04 by mcutura          ###   ########.fr       */
+/*   Updated: 2023/03/11 15:39:00 by mcutura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	ft_puterr(char *progname, char *errmsg, char errparam)
 			write(2, errmsg++, 1);
 	write(2, "'", 1);
 	if (errparam)
-			write(2, &errparam, 1);
+		write(2, &errparam, 1);
 	write(2, "'", 1);
 }

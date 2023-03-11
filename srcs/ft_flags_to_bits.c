@@ -6,11 +6,11 @@
 /*   By: mcutura <mcutura@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:14:19 by mcutura           #+#    #+#             */
-/*   Updated: 2023/03/10 21:09:18 by mcutura          ###   ########.fr       */
+/*   Updated: 2023/03/11 12:23:51 by mcutura          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO - Create header info and move defines into header
+// TODO - Add check for invalid flags; add --word flags
 // bits : 0, 1, 2 - reserved bits
 // 3 - R - list recursively
 // 4-6 - x(000), m(010), 1(001), unasigned(110)?, l(111), g(101), o(110)
@@ -23,14 +23,7 @@
 // 17 - d - directory ???
 // 18-32 - free to assign for sorting and other options
 
-#include "ft_ls.h"
-
-#define LIST_MASK 111
-#define LIST_OFFSET 4
-#define SORT_MASK 1111
-#define SORT_OFFSET 7
-#define ALL_MASK 11
-#define ALL_OFFSET 11
+#include "ft_bitmagiks.h"
 
 void	set_other_option(int *bits, char c)
 {
@@ -127,4 +120,19 @@ int	ft_flags_to_bits(int *bitflags, unsigned char *flags)
 		}
 	}
 	return (0);
+}
+
+int	ft_get_bits(int ac, char **av)
+{
+	int	bits;
+	int	i;
+
+	if (ac == 1)
+		return (0);
+	i = 0;
+	bits = 0;
+	while (++i < ac)
+		if (ft_strlen(av[i] > 1 && av[i][0] == '-' && av[i][1] != '-'))
+				ft_flags_to_bits(bits, av[i]);
+	return (bits);
 }
